@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5504637009371378323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5504637009371378321}
+  - component: {fileID: 5504637009371378322}
+  m_Layer: 0
+  m_Name: MapEditor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5504637009371378321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5504637009371378323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5504637009371378322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5504637009371378323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3151327046dfd4c9d87450a31c5ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldWIdth: 10
+  fieldHeight: 14
+  tilePrefab: {fileID: 8260471327495342868, guid: 9fc75b836df869d48a1a303d7bd4a586,
+    type: 3}
+  scripatbleObjects:
+  - {fileID: 11400000, guid: a8a9b26151962394caa360973162f167, type: 2}
+  - {fileID: 11400000, guid: 78bdc641ea8cfbd4ab8944ed059ae0e7, type: 2}
+  - {fileID: 11400000, guid: 211fcbb0fd89bbe4781812a880d58884, type: 2}
+  - {fileID: 11400000, guid: a888e199e4e7c5f4f840886153e9f01e, type: 2}
+  - {fileID: 11400000, guid: c85b515c4ab1d9a4faf87f28e7d16b9b, type: 2}
+  - {fileID: 11400000, guid: 03b53d7d4328fec4a9a4ce44832503b6, type: 2}
+  - {fileID: 11400000, guid: 945a118871894ef48ac64190c5793971, type: 2}
+  saveFolderPath: D:/Development/Repo/Syberian games jam/DeepComunism/Assets/Scripts/MapEditor/GeneratedLevels
+  mapName: "\u0422\u0435\u0441\u0442 1"
