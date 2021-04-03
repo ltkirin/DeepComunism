@@ -22,11 +22,11 @@ namespace Assets.Scripts.MapEditor
         [SerializeField]
         private TileType type = TileType.Impassable;
 
-        private MapEditorTileScriptableObject data;
+        private TileScriptableObject data;
 
         private MeshRenderer innerMeshRenderer;
 
-        public IList<MapEditorTileScriptableObject> MapEditorTileScriptableObjects { get; set; }
+        public IList<TileScriptableObject> MapEditorTileScriptableObjects { get; set; }
         private MeshRenderer meshRenderer
         {
             get

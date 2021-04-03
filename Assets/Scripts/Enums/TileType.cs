@@ -6,12 +6,9 @@ namespace Assets.Scripts.Enums
 {
 	public enum TileType 
 	{
-		Road = 0,
-		Railroad = 1,
+		Standart = 0,
+		Fast = 1,
 		Impassable = 2,
 		Dangerous = 3,
-		Spawner = 4,
-		Obstacle = 5,
-		DisabledRoad = 6
 	}
 }

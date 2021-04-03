@@ -4,6 +4,8 @@ namespace Assets.Scripts.Enums
 	{
 		None = 0,
 		DirectionSwitch = 1,
-		Mount = 2
+		Spawner = 2,
+		Obstacle = 3,
+		DisabledRoad = 4
 	}
 }

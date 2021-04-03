@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Dangerous
+  m_Name: Standart
   m_EditorClassIdentifier: Assembly-CSharp:Assets.Scripts.MapEditor:TileScriptableObject
-  type: 3
-  color: {r: 1, g: 0, b: 0, a: 0}
-  tileSprite: {fileID: 21300000, guid: 0fb175fc58aa0ee4f9fb0a5c85c445a7, type: 3}
-  velocity: 0
+  type: 0
+  color: {r: 0.14048593, g: 0.7264151, b: 0.22892813, a: 0}
+  tileSprite: {fileID: 21300000, guid: e04d8ddcc09097645990614861d09b0f, type: 3}
+  velocity: 1
