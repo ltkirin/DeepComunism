@@ -10,7 +10,7 @@ namespace Assets.Scripts.Controllers
 {
     public class RoadTileController : TileControllerBase
     {
-        public RoadTileController(int matrixXCoordinate, int matrixYCoordinate, TileScriptableObject data) : base(matrixXCoordinate, matrixYCoordinate, data)
+        public RoadTileController(int matrixXCoordinate, int matrixYCoordinate, TileTemplateScriptableObject data) : base(matrixXCoordinate, matrixYCoordinate, data)
         {
             interaction = new RoadInteraction(this);
         }

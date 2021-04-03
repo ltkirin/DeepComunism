@@ -13,9 +13,9 @@ namespace Assets.Scripts.Controllers
         private ITileController[,] matrix;
 
         private readonly string filePath;
-        private readonly IList<TileScriptableObject> scriptableObjects;
+        private readonly IList<TileTemplateScriptableObject> scriptableObjects;
 
-        public TilesGridController(string filePath, IList<TileScriptableObject> scriptableObjects)
+        public TilesGridController(string filePath, IList<TileTemplateScriptableObject> scriptableObjects)
         {
             this.filePath = filePath;
             this.scriptableObjects = scriptableObjects;
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Controllers
                 {
                     var loadedTile = JsonUtility.FromJson<TileLoadingModel>(reader.ReadLine());
 
-                    matrix[loadedTile.xCoordiante, loadedTile.yCoordiante] = GetTileController(loadedTile);
+                    matrix[loadedTile.xCoordinate, loadedTile.yCoordinate] = GetTileController(loadedTile);
                 }
             }
             State = ControllerState.Active;
@@ -86,20 +86,20 @@ namespace Assets.Scripts.Controllers
         private ITileController GetTileController(TileLoadingModel model)
         {
             ITileController result = null;
-            TileScriptableObject scriptableObject = scriptableObjects.First(i => i.Type == model.type);
+            TileTemplateScriptableObject scriptableObject = scriptableObjects.First(i => i.Type == model.type);
             switch (model.type)
             {
                 case TileType.Standart:
-                    result = new RoadTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new RoadTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
                 case TileType.Fast:
-                    result = new RailRoadTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new RailRoadTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
                 case TileType.Impassable:
-                    result = new ImpassibleTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new ImpassibleTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
                 case TileType.Dangerous:
-                    result = new DangerousTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new DangerousTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
             }
             if (model.addon > TileAddon.None)

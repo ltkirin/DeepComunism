@@ -4,9 +4,9 @@ using UnityEngine;
 public class TileLoadingModel
 {
     [SerializeField]
-    public int xCoordiante;
+    public int xCoordinate;
     [SerializeField]
-    public int yCoordiante;
+    public int yCoordinate;
     [SerializeField]
     public bool isStartTile;
     [SerializeField]

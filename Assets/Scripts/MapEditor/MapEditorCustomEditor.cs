@@ -1,3 +1,5 @@
+using Boo.Lang;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,9 +11,12 @@ namespace Assets.Scripts.MapEditor
 		[SerializeField]
 		private MapEditorScript script;
 
+		private List<string> levelsPaths = new List<string>();
+		int choiceIndex = 0;
 		void OnEnable()
 		{
 			script = (MapEditorScript)target;
+			RefreshLevels();
 		}
 
 		public override void OnInspectorGUI()
@@ -28,13 +33,27 @@ namespace Assets.Scripts.MapEditor
 			if (GUILayout.Button("Сохранить"))
 			{
 				script.SaveMap();
+				RefreshLevels();
 			}
-
 			if (GUILayout.Button("Загрузить"))
 			{
-				script.LoadGrid();
+				script.LoadGrid(levelsPaths[choiceIndex]);
 			}
+
+			choiceIndex = EditorGUILayout.Popup(choiceIndex, levelsPaths.Select(i => GetLevelName(i)).ToArray());			
+			EditorUtility.SetDirty(target);
 		}
 
+
+		private string GetLevelName(string path) => path.Split('/').Last().Replace(".asset", "");
+
+		private void RefreshLevels()
+		{
+			levelsPaths.Clear();
+			levelsPaths.AddRange(AssetDatabase
+				.FindAssets("", new[] { script.SaveFolderPath })
+				.Select(i => AssetDatabase.GUIDToAssetPath(i))
+				.ToList());
+		}
 	}
 }

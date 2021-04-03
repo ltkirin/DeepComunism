@@ -10,9 +10,9 @@ namespace Assets.Scripts.MapEditor
     public class MapEditorTileScript : MonoBehaviour
     {
         [SerializeField]
-        private int xCoordiante;
+        private int xCoordinate;
         [SerializeField]
-        private int yCoordiante;
+        private int yCoordinate;
         [SerializeField]
         private bool isStartTile;
         [SerializeField]
@@ -22,11 +22,11 @@ namespace Assets.Scripts.MapEditor
         [SerializeField]
         private TileType type = TileType.Impassable;
 
-        private TileScriptableObject data;
+        private TileTemplateScriptableObject data;
 
         private MeshRenderer innerMeshRenderer;
 
-        public IList<TileScriptableObject> MapEditorTileScriptableObjects { get; set; }
+        public IList<TileTemplateScriptableObject> MapEditorTileScriptableObjects { get; set; }
         private MeshRenderer meshRenderer
         {
             get
@@ -40,8 +40,8 @@ namespace Assets.Scripts.MapEditor
             }
         }
         [SerializeField]
-        public int XCoordiante { get => xCoordiante; set => xCoordiante = value; }
-        public int YCoordiante { get => yCoordiante; set => yCoordiante = value; }
+        public int XCoordinate { get => xCoordinate; set => xCoordinate = value; }
+        public int YCoordinate { get => yCoordinate; set => yCoordinate = value; }
 
         public bool IsStartTile { get => isStartTile; set => isStartTile = value; }
         public bool IsFinishTitle { get => isFinishTitle; set => isFinishTitle = value; }
@@ -50,24 +50,39 @@ namespace Assets.Scripts.MapEditor
 
         private void OnValidate()
         {
-            if (data != null && data.Type != type)
+            try
             {
-                SetData(type);
+                if (data != null && data.Type != type)
+                {
+                    SetData(type);
+                }
+            }
+            catch (Exception e)
+            {
+
             }
         }
 
         public void SetData(TileType type)
         {
-            this.type = type;
-            data = MapEditorTileScriptableObjects.First(x => x.Type == this.type);
-            meshRenderer.sharedMaterial = GetMaterial(data.Color);
+            if (MapEditorTileScriptableObjects == null || !MapEditorTileScriptableObjects.Any())
+            {
+                SetData(type);
+
+            }
+            else
+            {
+                this.type = type;
+                data = MapEditorTileScriptableObjects.First(x => x.Type == this.type);
+                meshRenderer.sharedMaterial = GetMaterial(data.Color);
+            }
         }
 
-        public void SetData(TileLoadingModel script)
+        public void SetData(TileLoadingModel loadingModel)
         {
-            XCoordiante = script.xCoordiante;
-            yCoordiante = script.yCoordiante;
-            SetData(script.type);
+            XCoordinate = loadingModel.xCoordinate;
+            yCoordinate = loadingModel.yCoordinate;
+            SetData(loadingModel.type);
         }
 
         public void RefreshColor()
