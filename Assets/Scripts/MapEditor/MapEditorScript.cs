@@ -17,7 +17,7 @@ namespace Assets.Scripts.MapEditor
         [SerializeField]
         private GameObject tilePrefab;
         [SerializeField]
-        private MapEditorTileScriptableObject[] scripatbleObjects;
+        private TileScriptableObject[] scripatbleObjects;
         [SerializeField]
         private string saveFolderPath;
         [SerializeField]
@@ -31,19 +31,19 @@ namespace Assets.Scripts.MapEditor
             ClearGrid();
             transform.position = new Vector2(-fieldWIdth / 2, fieldHeight / 2);
             tilesMatrix = new MapEditorTileScript[fieldWIdth, fieldHeight];
+            
             for (int i = 0; i < fieldWIdth; i++)
             {
                 for (int j = 0; j < fieldHeight; j++)
                 {
-
                     var currentTileObject = PrefabUtility.InstantiatePrefab(tilePrefab) as GameObject;
-                    currentTileObject.transform.position = new Vector3(transform.position.x + (currentTileObject.transform.localScale.x * i),
-                        transform.position.y - (currentTileObject.transform.localScale.y * j));
+                    currentTileObject.transform.position = new Vector3(transform.position.x + (currentTileObject.transform.localScale.x * (i+.5f)),
+                        transform.position.y - (currentTileObject.transform.localScale.y * (j + .5f)));
 
                     currentTileObject.transform.SetParent(this.transform);
                     var currentTile = currentTileObject.GetComponent<MapEditorTileScript>();
                     currentTile.MapEditorTileScriptableObjects = scripatbleObjects;
-                    currentTile.SetData(TileType.Road);
+                    currentTile.SetData(TileType.Standart);
                     currentTile.XCoordiante = i;
                     currentTile.YCoordiante = j;
                     tilesMatrix[i, j] = currentTile;
@@ -80,6 +80,7 @@ namespace Assets.Scripts.MapEditor
                 }
             }
             tilesMatrix = new MapEditorTileScript[0, 0];
+            transform.position = Vector2.zero;
         }
 
         public void SaveMap()

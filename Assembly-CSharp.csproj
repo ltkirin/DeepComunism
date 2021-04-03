@@ -63,20 +63,40 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Components\TileScript.cs" />
+    <Compile Include="Assets\Scripts\Components\ComponentBase.cs" />
+    <Compile Include="Assets\Scripts\Components\GameControllerScript.cs" />
+    <Compile Include="Assets\Scripts\Components\Tiles\TileComponent.cs" />
+    <Compile Include="Assets\Scripts\Components\TilesGridComponent.cs" />
     <Compile Include="Assets\Scripts\Controllers\ControllerBase.cs" />
     <Compile Include="Assets\Scripts\Controllers\ControllersManager.cs" />
-    <Compile Include="Assets\Scripts\Controllers\GameControllerScript.cs" />
+    <Compile Include="Assets\Scripts\Controllers\DangerousTileController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\ImpassibleTileController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\RailRoadTileController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\RoadTileController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\TileControllerBase.cs" />
+    <Compile Include="Assets\Scripts\Controllers\TilesGridController.cs" />
+    <Compile Include="Assets\Scripts\Enums\Characters.cs" />
+    <Compile Include="Assets\Scripts\Enums\ControllerState.cs" />
+    <Compile Include="Assets\Scripts\Enums\Direction.cs" />
     <Compile Include="Assets\Scripts\Enums\TileAddon.cs" />
     <Compile Include="Assets\Scripts\Enums\TileType.cs" />
-    <Compile Include="Assets\Scripts\GameField\GameFieldScript.cs" />
+    <Compile Include="Assets\Scripts\Interaction\AddonInteractionBase.cs" />
+    <Compile Include="Assets\Scripts\Interaction\DirectionSwitchInteraction.cs" />
+    <Compile Include="Assets\Scripts\Interaction\DisabledRoadInteraction.cs" />
+    <Compile Include="Assets\Scripts\Interaction\InteractionBase.cs" />
+    <Compile Include="Assets\Scripts\Interaction\ObstacleInteraction.cs" />
+    <Compile Include="Assets\Scripts\Interaction\RoadInteraction.cs" />
+    <Compile Include="Assets\Scripts\Interaction\SpawnerInteraction.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IAddonInteraction.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IFixedUpdateController.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IInteractableCharacter.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ILateUpdateController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IMovingController.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IStartController.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ITIlePriamryInteraction.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ITileController.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\ITileInteraction.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IUpdateController.cs" />
-    <Compile Include="Assets\Scripts\MapEditor\LevelModel.cs" />
-    <Compile Include="Assets\Scripts\MapEditor\LevelSize.cs" />
     <Compile Include="Assets\Scripts\MapEditor\MapEditorCustomEditor.cs" />
     <Compile Include="Assets\Scripts\MapEditor\MapEditorScript.cs" />
     <Compile Include="Assets\Scripts\MapEditor\MapEditorTileScript.cs" />

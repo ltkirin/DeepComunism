@@ -1,0 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assets.Scripts.Enums
+{
+    public enum ControllerState
+    {
+        Inactive = 0,
+        Loading = 1,
+        Active = 2
+    }
+}

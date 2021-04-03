@@ -10,7 +10,7 @@ public class TileLoadingModel
     [SerializeField]
     public bool isStartTile;
     [SerializeField]
-    public bool isFinishTitle;
+    public bool isFinishTile;
     [SerializeField]
     public TileAddon addon;
     [SerializeField]
