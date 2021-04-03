@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  currentLevelPath: D:\Development\Repo\Syberian games jam\DeepComunism\Assets\Scripts\MapEditor\GeneratedLevels\Level1.mpf
+  currentLevelPath: Assets/Levels/Level 1.asset
   startupDuartion: 2.5
   tilesScripatableObjects:
   - {fileID: 11400000, guid: c05495a45727aeb44b849ffb777b8378, type: 2}

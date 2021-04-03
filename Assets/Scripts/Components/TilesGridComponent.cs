@@ -34,8 +34,6 @@ namespace Assets.Scripts.Components
             StartCoroutine(CreateFieldView());
         }
 
-        public string CurrentLevelPath { get => currentLevelPath; set => currentLevelPath = value; }
-
         public IEnumerator CreateFieldView()
         {
             while (controller.State < ControllerState.Active)
