@@ -10,7 +10,7 @@ namespace Assets.Scripts.Controllers
 {
     public class ImpassibleTileController : TileControllerBase
     {
-        public ImpassibleTileController(int matrixXCoordinate, int matrixYCoordinate, TileScriptableObject data) : base(matrixXCoordinate, matrixYCoordinate, data)
+        public ImpassibleTileController(int matrixXCoordinate, int matrixYCoordinate, TileTemplateScriptableObject data) : base(matrixXCoordinate, matrixYCoordinate, data)
         {
         }
 

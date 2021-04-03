@@ -11,7 +11,7 @@ namespace Assets.Scripts.Controllers
     {
         protected readonly int matrixXCoordinate;
         protected readonly int matrixYCoordinate;
-        protected readonly TileScriptableObject data;
+        protected readonly TileTemplateScriptableObject data;
         protected ITilePriamryInteraction interaction;
         protected TileComponent component;
 
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Controllers
         public bool IsStartTile { get ; set ; }
         public bool IsFinishTile { get ; set ; }
 
-        public TileControllerBase(int matrixXCoordinate, int matrixYCoordinate, TileScriptableObject data)
+        public TileControllerBase(int matrixXCoordinate, int matrixYCoordinate, TileTemplateScriptableObject data)
         {
             this.matrixXCoordinate = matrixXCoordinate;
             this.matrixYCoordinate = matrixYCoordinate;

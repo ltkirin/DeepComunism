@@ -10,7 +10,7 @@ namespace Assets.Scripts.Controllers
 {
     public class RailRoadTileController : TileControllerBase
     {
-        public RailRoadTileController(int matrixXCoordinate, int matrixYCoordinate, TileScriptableObject data) : base(matrixXCoordinate, matrixYCoordinate, data)
+        public RailRoadTileController(int matrixXCoordinate, int matrixYCoordinate, TileTemplateScriptableObject data) : base(matrixXCoordinate, matrixYCoordinate, data)
         {
         }
     }

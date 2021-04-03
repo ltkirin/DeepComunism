@@ -20,7 +20,7 @@ namespace Assets.Scripts.Components
         [SerializeField]
         private float startupDuartion;
         [SerializeField]
-        private List<TileScriptableObject> tilesScripatableObjects;
+        private List<TileTemplateScriptableObject> tilesScripatableObjects;
         [SerializeField]
         private List<TileComponent> tileComponents;
         [SerializeField]
@@ -33,8 +33,6 @@ namespace Assets.Scripts.Components
             controller = new TilesGridController(currentLevelPath, tilesScripatableObjects);
             StartCoroutine(CreateFieldView());
         }
-
-        public string CurrentLevelPath { get => currentLevelPath; set => currentLevelPath = value; }
 
         public IEnumerator CreateFieldView()
         {
@@ -55,7 +53,10 @@ namespace Assets.Scripts.Components
 
                 }
             }
-            ActivateGamefield();
+            yield return ActivateGamefield();
+            float shift = transform.position.x * (1.0f / 6.0f);
+            transform.position += new Vector3(shift , 0,0);     
+          
             yield return null;
 
         }
@@ -65,12 +66,13 @@ namespace Assets.Scripts.Components
             base.Activate();
         }
 
-        private void ActivateGamefield()
+        private IEnumerator ActivateGamefield()
         {
             foreach (var component in tileComponents)
             {
                 StartCoroutine(ActivateTile(component));
             }
+            yield return new WaitForSeconds(3);
         }
 
         private IEnumerator ActivateTile(TileComponent tile)
@@ -85,5 +87,7 @@ namespace Assets.Scripts.Components
             return new Vector2(transform.position.x + (tilePrefab.transform.lossyScale.x * (xIndex + .5f)),
                         transform.position.y - (tilePrefab.transform.lossyScale.y * (yIndex + .5f)));
         }
+
+
     }
 }

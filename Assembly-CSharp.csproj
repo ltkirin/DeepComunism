@@ -100,8 +100,10 @@
     <Compile Include="Assets\Scripts\MapEditor\MapEditorCustomEditor.cs" />
     <Compile Include="Assets\Scripts\MapEditor\MapEditorScript.cs" />
     <Compile Include="Assets\Scripts\MapEditor\MapEditorTileScript.cs" />
-    <Compile Include="Assets\Scripts\MapEditor\MapEditorTileScriptableObject.cs" />
     <Compile Include="Assets\Scripts\MapEditor\TileLoadingModel.cs" />
+    <Compile Include="Assets\Scripts\Scripatble objects\LevelScripatbleObject.cs" />
+    <Compile Include="Assets\Scripts\Scripatble objects\TileTemplateScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Service\MainControllerScript.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Development/Repo/Syberian games jam/DeepComunism/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

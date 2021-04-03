@@ -4,7 +4,7 @@ namespace Assets.Scripts.Controllers
 {
     public class DangerousTileController : TileControllerBase
     {
-        public DangerousTileController(int matrixXCoordinate, int matrixYCoordinate, TileScriptableObject data) 
+        public DangerousTileController(int matrixXCoordinate, int matrixYCoordinate, TileTemplateScriptableObject data) 
             : base(matrixXCoordinate, matrixYCoordinate, data)
         {
         }

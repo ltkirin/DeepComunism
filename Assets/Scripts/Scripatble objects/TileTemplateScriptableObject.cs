@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts.MapEditor
 {
     [CreateAssetMenu(fileName = "New TileData", menuName = "Tile Data", order = 51)]
-    public class TileScriptableObject : ScriptableObject
+    public class TileTemplateScriptableObject : ScriptableObject
     {
         [SerializeField]
         private TileType type;

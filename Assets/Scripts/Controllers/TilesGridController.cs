@@ -2,8 +2,8 @@ using Assets.Scripts.Enums;
 using Assets.Scripts.Interfaces;
 using Assets.Scripts.MapEditor;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers
@@ -13,9 +13,9 @@ namespace Assets.Scripts.Controllers
         private ITileController[,] matrix;
 
         private readonly string filePath;
-        private readonly IList<TileScriptableObject> scriptableObjects;
+        private readonly IList<TileTemplateScriptableObject> scriptableObjects;
 
-        public TilesGridController(string filePath, IList<TileScriptableObject> scriptableObjects)
+        public TilesGridController(string filePath, IList<TileTemplateScriptableObject> scriptableObjects)
         {
             this.filePath = filePath;
             this.scriptableObjects = scriptableObjects;
@@ -26,16 +26,16 @@ namespace Assets.Scripts.Controllers
         public void Start()
         {
             State = ControllerState.Loading;
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                var extensions = reader.ReadLine().Split(',').Select(i => int.Parse(i)).ToArray();
-                matrix = new ITileController[extensions.First(), extensions.Last()];
-                while (!reader.EndOfStream)
-                {
-                    var loadedTile = JsonUtility.FromJson<TileLoadingModel>(reader.ReadLine());
+            var asset = AssetDatabase.LoadAssetAtPath<LevelScripatbleObject>(filePath);
 
-                    matrix[loadedTile.xCoordiante, loadedTile.yCoordiante] = GetTileController(loadedTile);
-                }
+            matrix = new ITileController[asset.LevelWidth, asset.LevelHeight];
+
+            foreach (var tileString in asset.Tiles)
+            {
+                TileLoadingModel loadedTile = JsonUtility.FromJson<TileLoadingModel>(tileString);
+
+                matrix[loadedTile.xCoordinate, loadedTile.yCoordinate] = GetTileController(loadedTile);
+
             }
             State = ControllerState.Active;
             IsActive = true;
@@ -44,22 +44,22 @@ namespace Assets.Scripts.Controllers
         public IList<ITileController> GetAdjacentTiles(ITileController tile, params Direction[] directions)
         {
             List<ITileController> result = new List<ITileController>();
-            if(directions == null)
+            if (directions == null)
             {
                 directions = new Direction[] { Direction.Up, Direction.Right, Direction.Down, Direction.Left };
             }
-            foreach (var direction in  directions)
+            foreach (var direction in directions)
             {
                 switch (direction)
                 {
                     case Direction.Up:
-                        if(tile.MatrixYCoordinate > 0)
+                        if (tile.MatrixYCoordinate > 0)
                         {
                             result.Add(matrix[tile.MatrixXCoordinate, tile.MatrixYCoordinate - 1]);
                         }
                         break;
                     case Direction.Right:
-                        if (tile.MatrixXCoordinate < matrix.GetLength(0) -1)
+                        if (tile.MatrixXCoordinate < matrix.GetLength(0) - 1)
                         {
                             result.Add(matrix[tile.MatrixXCoordinate + 1, tile.MatrixYCoordinate]);
                         }
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Controllers
                     case Direction.Left:
                         if (tile.MatrixXCoordinate > 0)
                         {
-                            result.Add(matrix[tile.MatrixXCoordinate-1, tile.MatrixYCoordinate]);
+                            result.Add(matrix[tile.MatrixXCoordinate - 1, tile.MatrixYCoordinate]);
                         }
                         break;
                     default:
@@ -86,20 +86,20 @@ namespace Assets.Scripts.Controllers
         private ITileController GetTileController(TileLoadingModel model)
         {
             ITileController result = null;
-            TileScriptableObject scriptableObject = scriptableObjects.First(i => i.Type == model.type);
+            TileTemplateScriptableObject scriptableObject = scriptableObjects.First(i => i.Type == model.type);
             switch (model.type)
             {
                 case TileType.Standart:
-                    result = new RoadTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new RoadTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
                 case TileType.Fast:
-                    result = new RailRoadTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new RailRoadTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
                 case TileType.Impassable:
-                    result = new ImpassibleTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new ImpassibleTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
                 case TileType.Dangerous:
-                    result = new DangerousTileController(model.xCoordiante, model.yCoordiante, scriptableObject);
+                    result = new DangerousTileController(model.xCoordinate, model.yCoordinate, scriptableObject);
                     break;
             }
             if (model.addon > TileAddon.None)
